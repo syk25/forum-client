@@ -5,6 +5,7 @@ const Register = () => {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate(); // useNavigate 훅을 컴포넌트 내부로 이동
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -13,6 +14,31 @@ const Register = () => {
 		setUsername("");
 		setPassword("");
 	};
+
+	const signUp = () => {
+		fetch("http://localhost:4000/api/register", {
+			method: "POST",
+			body: JSON.stringify({
+				email,
+				password,
+				username,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.error_message) {
+					alert(data.error_message);
+				} else {
+					alert("Account created successfully!");
+					navigate("/"); // 회원가입 성공 시 홈으로 이동
+				}
+			})
+			.catch((err) => console.error(err));
+	};
+
 	return (
 		<main className="register">
 			<h1 className="registerTitle">Create an account</h1>
@@ -57,32 +83,3 @@ const Register = () => {
 };
 
 export default Register;
-
-/* 서버에게 회원가입 정보 전송 */
-const navigate = useNavigate();
-
-const signUp = () => {
-    fetch("http://localhost:4000/api/register", {
-        method: "POST",
-        body: JSON.stringify({
-            email,
-            password,
-            username,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.error_message) {
-                alert(data.error_message);
-            } else {
-                alert("Account created successfully!");
-                navigate("/");
-            }
-        })
-        .catch((err) => console.error(err));
-};
-
-
