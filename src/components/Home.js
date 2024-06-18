@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Comments from "../utils/Comments"; // 경로 설정 주의!
 import Likes from "../utils/Like"; // 경로 설정 주의!
 
-
 import Nav from "./Nav";
 
 const Home = () => {
 	const [thread, setThread] = useState("");
+	const [threadList, setThreadList] = useState([]);
 	const navigate = useNavigate();
 
-	// 사용자가 인가되었는지 확인
 	useEffect(() => {
 		const checkUser = () => {
 			if (!localStorage.getItem("_id")) {
@@ -25,15 +24,12 @@ const Home = () => {
 		checkUser();
 	}, [navigate]);
 
-	/* state: 포스트 보관 */
-	const [threadList, setThreadList] = useState([]);
-
 	const createThread = () => {
 		fetch("http://localhost:4000/api/create/thread", {
 			method: "POST",
 			body: JSON.stringify({
 				thread,
-				userId: localStorage.getItem("_id"),
+				id: localStorage.getItem("_id"),
 			}),
 			headers: {
 				"Content-Type": "application/json",
@@ -46,33 +42,35 @@ const Home = () => {
 			})
 			.catch((err) => console.error(err));
 	};
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		createThread(); // 스레드 생성 함수 호출
+		createThread();
 		setThread("");
 	};
-
 	return (
 		<>
 			<Nav />
-			<main className="home">
-				<h2 className="homeTitle">Create a Thread</h2>
-				<form
-					className="homeForm"
-					onSubmit={handleSubmit}
-				>
-					{/*--form UI elements--*/}
+			<main className='home'>
+				<h2 className='homeTitle'>Create a Thread</h2>
+				<form className='homeForm' onSubmit={handleSubmit}>
+					<div className='home__container'>
+						<label htmlFor='thread'>Title / Description</label>
+						<input
+							type='text'
+							name='thread'
+							required
+							value={thread}
+							onChange={(e) => setThread(e.target.value)}
+						/>
+					</div>
+					<button className='homeBtn'>CREATE THREAD</button>
 				</form>
 
-				<div className="thread__container">
+				<div className='thread__container'>
 					{threadList.map((thread) => (
-						<div
-							className="thread__item"
-							key={thread.id}
-						>
+						<div className='thread__item' key={thread.id}>
 							<p>{thread.title}</p>
-							<div className="react__container">
+							<div className='react__container'>
 								<Likes
 									numberOfLikes={thread.likes.length}
 									threadId={thread.id}
