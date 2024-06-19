@@ -7,7 +7,8 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Replies from "./components/Replies";
 import Forum from "./components/Forum";
-import CreatePost from "./components/CreatePost";
+import PostDetail from "./components/PostDetail";
+import CreatePost from "./components/CreatePost"; // 게시글 작성 페이지
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={<Login />} />
                     <Route path='/forum' element={<Forum />} />
+                    <Route path="/post/:id" element={<PostDetail />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/dashboard' element={<Home />} />
                     <Route path='/:id/replies' element={<Replies />} />
