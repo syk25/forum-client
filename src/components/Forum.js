@@ -24,6 +24,7 @@ function Forum() {
     };
 
     const displayedPosts = posts.slice((page - 1) * postsPerPage, page * postsPerPage);
+    const totalPages = Math.ceil(posts.length / postsPerPage);
 
     return (
         <>
@@ -43,12 +44,44 @@ function Forum() {
                         </div>
                     ))}
                 </div>
-                <div id="pagination" className="homeForm">
-                    {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, i) => (
-                        <button className="homeBtn" key={i + 1} onClick={() => handlePageChange(i + 1)}>
-                            {i + 1}
-                        </button>
-                    ))}
+                <div id="paging">
+                    <ul className="pagination">
+                        {page > 1 && (
+                            <li className="prevpage">
+                                <button
+                                    className=""
+                                    aria-label="prevPage"
+                                    id="prevPage"
+                                    onClick={() => handlePageChange(page - 1)}
+                                >
+                                    <span className="material-icons-outlined page-icon">navigate_before</span>
+                                </button>
+                            </li>
+                        )}
+                        {Array.from({ length: totalPages }, (_, i) => (
+                            <li key={i + 1}>
+                                <button
+                                    className={`num ${page === i + 1 ? "selected" : ""}`}
+                                    aria-label="pageNumber"
+                                    onClick={() => handlePageChange(i + 1)}
+                                >
+                                    <span className="">{i + 1}</span>
+                                </button>
+                            </li>
+                        ))}
+                        {page < totalPages && (
+                            <li className="nextpage">
+                                <button
+                                    className=""
+                                    aria-label="nextPage"
+                                    id="nextPage"
+                                    onClick={() => handlePageChange(page + 1)}
+                                >
+                                    <span className="material-icons-outlined page-icon">navigate_next</span>
+                                </button>
+                            </li>
+                        )}
+                    </ul>
                 </div>
             </div>
         </>

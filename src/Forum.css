@@ -17,9 +17,37 @@ body {
     margin-bottom: 10px;
 }
 
-#pagination {
+#paging {
     margin-top: 20px;
     text-align: center;
+}
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pagination .selected span {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.material-icons-outlined.page-icon {
+    font-size: 24px;
 }
 
 .modal {
