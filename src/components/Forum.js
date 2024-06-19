@@ -36,15 +36,14 @@ function Forum() {
                 </button>
                 <div className="home__container" id="post-list">
                     {displayedPosts.map((post) => (
-                        <div key={post._id} className="thread__item post">
-                            <div>
-                                <h3 
-                                    className="post-title" 
-                                    onClick={() => navigate(`/post/${post._id}`)}
-                                >
-                                    {post.title}
-                                </h3>
-                            </div>
+                        <div 
+                            key={post._id} 
+                            className="thread__item post" 
+                            onClick={() => navigate(`/post/${post._id}`)}
+                        >
+                            <h3 className="post-title">
+                                {post.title}
+                            </h3>
                         </div>
                     ))}
                 </div>

@@ -7,14 +7,25 @@ body {
     margin: auto;
 }
 
+.home {
+    text-align: center;
+}
+
 #post-list {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .post {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
+    width: 60%;
+    text-align: left;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #paging {
