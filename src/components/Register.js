@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./../App.css"; // 스타일링 파일
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate(); // 훅 설정
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +25,7 @@ function Register() {
                 throw new Error("Failed to register user");
             }
             alert("Registration successful");
+            navigate("/forum");
         } catch (error) {
             console.error("Error registering user:", error);
         }

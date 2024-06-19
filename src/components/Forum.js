@@ -58,7 +58,7 @@ function Forum() {
                                     id="prevPage"
                                     onClick={() => handlePageChange(page - 1)}
                                 >
-                                    <span className="material-icons-outlined page-icon">navigate_before</span>
+                                    <span className="material-icons-outlined page-icon">이전</span>
                                 </button>
                             </li>
                         )}
@@ -81,7 +81,7 @@ function Forum() {
                                     id="nextPage"
                                     onClick={() => handlePageChange(page + 1)}
                                 >
-                                    <span className="material-icons-outlined page-icon">navigate_next</span>
+                                    <span className="material-icons-outlined page-icon">다음</span>
                                 </button>
                             </li>
                         )}

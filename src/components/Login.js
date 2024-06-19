@@ -31,7 +31,7 @@ const Login = () => {
 					alert(data.error_message);
 				} else {
 					alert(data.message);
-					navigate("/dashboard");
+					navigate("/forum");
 					localStorage.setItem("_id", data.id);
 				}
 			})

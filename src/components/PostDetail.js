@@ -38,6 +38,9 @@ function PostDetail() {
     const handleEdit = () => {
         navigate(`/edit-post/${id}`);
     };
+    const cancelEdit = () => {
+        navigate(`/forum`);
+    };
 
     const handleDelete = async () => {
         await fetch(`http://localhost:4000/api/posts/${id}`, {
@@ -56,6 +59,7 @@ function PostDetail() {
                 <p className="post-content-detail">{post.content}</p>
                 {currentUser && currentUser.id === post.authorId && (
                     <div className="post-actions">
+                        <button className="cancel-btn" onClick={cancelEdit}>취소</button>
                         <button className="edit-btn" onClick={handleEdit}>수정</button>
                         <button className="delete-btn" onClick={handleDelete}>삭제</button>
                     </div>

@@ -211,7 +211,7 @@ nav a:hover {
     justify-content: flex-end; /* 오른쪽 정렬 */
     gap: 10px; /* 버튼 사이 간격 */
 }
-
+.cancel-btn,
 .edit-btn,
 .delete-btn {
     padding: 10px 20px;

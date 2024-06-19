@@ -45,7 +45,7 @@ function CreatePost() {
             if (!response.ok) {
                 throw new Error("Failed to create post");
             }
-            navigate("/dashboard");
+            navigate("/forum");
         } catch (error) {
             console.error("Error creating post:", error);
         }
