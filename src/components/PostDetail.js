@@ -43,7 +43,7 @@ function PostDetail() {
         await fetch(`http://localhost:4000/api/posts/${id}`, {
             method: "DELETE",
         });
-        navigate("/");
+        navigate("/forum");
     };
 
     if (!post) return <div>Loading...</div>;
