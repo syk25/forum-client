@@ -1,25 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./../App.css"; // 스타일링 파일
 
 function CreatePost() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [currentUser, setCurrentUser] = useState(null); // 현재 사용자 정보
     const navigate = useNavigate();
+
+    useEffect(() => {
+        loadCurrentUser();
+    }, []);
+
+    const loadCurrentUser = async () => {
+        try {
+            const response = await fetch("http://localhost:4000/api/current-user");
+            if (!response.ok) {
+                throw new Error("Failed to load current user");
+            }
+            const data = await response.json();
+            setCurrentUser(data);
+        } catch (error) {
+            console.error("Error loading current user:", error);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newPost = { title, content };
+        if (!currentUser) {
+            alert("User information is not loaded yet.");
+            return;
+        }
 
-        await fetch("http://localhost:4000/api/posts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newPost),
-        });
+        const newPost = { title, content, authorId: currentUser.id };
 
-        navigate("/");
+        try {
+            const response = await fetch("http://localhost:4000/api/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newPost),
+            });
+            if (!response.ok) {
+                throw new Error("Failed to create post");
+            }
+            navigate("/");
+        } catch (error) {
+            console.error("Error creating post:", error);
+        }
     };
 
     return (
