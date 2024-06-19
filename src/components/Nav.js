@@ -8,11 +8,19 @@ const Nav = () => {
 		localStorage.removeItem("_id");
 		navigate("/");
 	};
+
+	const goToForum = () => {
+		navigate("/forum");
+	};
+
 	return (
 		<nav className="navbar">
-			<h2>Threadify</h2>
+			<h2>정글 게시판</h2>
+			<div className="navbarCenter">
+				<button onClick={goToForum}>자유게시판</button>
+			</div>
 			<div className="navbarRight">
-				<button onClick={signOut}>Sign out</button>
+				<button onClick={signOut}>로그아웃</button>
 			</div>
 		</nav>
 	);

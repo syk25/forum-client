@@ -13,7 +13,7 @@ const Home = () => {
 	useEffect(() => {
 		const checkUser = () => {
 			if (!localStorage.getItem("_id")) {
-				navigate("/");
+				navigate("/dashboard");
 			} else {
 				fetch("http://localhost:4000/api/all/threads")
 					.then((res) => res.json())
@@ -51,10 +51,10 @@ const Home = () => {
 		<>
 			<Nav />
 			<main className='home'>
-				<h2 className='homeTitle'>Create a Thread</h2>
+				<h2 className='homeTitle'>쓰레드 만들기</h2>
 				<form className='homeForm' onSubmit={handleSubmit}>
 					<div className='home__container'>
-						<label htmlFor='thread'>Title / Description</label>
+						<label htmlFor='thread'>제목 / 설명</label>
 						<input
 							type='text'
 							name='thread'
@@ -63,7 +63,7 @@ const Home = () => {
 							onChange={(e) => setThread(e.target.value)}
 						/>
 					</div>
-					<button className='homeBtn'>CREATE THREAD</button>
+					<button className='homeBtn'>쓰레드 생성</button>
 				</form>
 
 				<div className='thread__container'>

@@ -40,12 +40,12 @@ const Login = () => {
 
 	return (
 		<main className="login">
-			<h1 className="loginTitle">Log into your account</h1>
+			<h1 className="loginTitle">로그인</h1>
 			<form
 				className="loginForm"
 				onSubmit={handleSubmit}
 			>
-				<label htmlFor="email">Email Address</label>
+				<label htmlFor="email">이메일</label>
 				<input
 					type="text"
 					name="email"
@@ -54,7 +54,7 @@ const Login = () => {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
-				<label htmlFor="password">Password</label>
+				<label htmlFor="password">비밀번호</label>
 				<input
 					type="password"
 					name="password"
@@ -63,9 +63,9 @@ const Login = () => {
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<button className="loginBtn">SIGN IN</button>
+				<button className="loginBtn">로그인하기</button>
 				<p>
-					Don't have an account? <Link to="/register">Create one</Link>
+					계정이 없으면 <Link to="/register">회원가입!</Link>
 				</p>
 			</form>
 		</main>
