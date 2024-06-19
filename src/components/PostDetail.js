@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import "./../Forum.css"; // 스타일링 파일
+import "./../index.css"; // 스타일링 파일
 
 function PostDetail() {
     const { id } = useParams();

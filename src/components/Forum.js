@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import "./../Forum.css"; // 스타일링 파일
+import "./../index.css"; // 스타일링 파일
 
 function Forum() {
     const [posts, setPosts] = useState([]);

@@ -53,8 +53,8 @@ function CreatePost() {
 
     return (
         <div className="createPost">
-            <h2>게시글 작성</h2>
-            <form className="registerForm" onSubmit={handleSubmit}>
+            <h2 className="createPostTitle">게시글 작성</h2>
+            <form className="createPostForm" onSubmit={handleSubmit}>
                 <input
                     className="modalInput"
                     type="text"
