@@ -30,24 +30,24 @@ const Replies = () => {
     }, [id]);
 
     const addReply = () => {
-		fetch("http://localhost:4000/api/create/reply", {
-			method: "POST",
-			body: JSON.stringify({
-				id,
-				userId: localStorage.getItem("_id"),
-				reply,
-			}),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				alert(data.message);
-				navigate("/dashboard");
-			})
-			.catch((err) => console.error(err));
-	};
+        fetch("http://localhost:4000/api/create/reply", {
+            method: "POST",
+            body: JSON.stringify({
+                id,
+                userId: localStorage.getItem("_id"),
+                reply,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                alert(data.message);
+                navigate("/dashboard");
+            })
+            .catch((err) => console.error(err));
+    };
 
     const handleSubmitReply = (e) => {
         e.preventDefault();
@@ -55,14 +55,15 @@ const Replies = () => {
         setReply("");
     };
 
+    const handleCancel = () => {
+        navigate("/dashboard");
+    };
+
     return (
         <main className="replies">
             <h1 className="repliesTitle">{title}</h1>
 
-            <form
-                className="modal__content"
-                onSubmit={handleSubmitReply}
-            >
+            <form className="modal__content" onSubmit={handleSubmitReply}>
                 <label htmlFor="reply">Reply to the thread</label>
                 <textarea
                     rows={5}
@@ -73,7 +74,14 @@ const Replies = () => {
                     className="modalInput"
                 />
 
-                <button className="modalBtn">SEND</button>
+                <div className="button-container">
+                    <button className="modalBtn" type="submit">
+                        SEND
+                    </button>
+                    <button className="modalBtn" type="button" onClick={handleCancel}>
+                        CANCEL
+                    </button>
+                </div>
             </form>
 
             <div className="thread__container">

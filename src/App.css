@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Adds some space between the buttons */
+  justify-content: center; /* Aligns the buttons to the start, change to center or end as needed */
+}
